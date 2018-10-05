@@ -15,6 +15,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
+import com.orangeapp.qa.pages.HomePage;
 import com.orangeapp.qa.pages.LoginPage;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -28,6 +29,7 @@ public class Testbase {
 	public static ExtentTest test;
 	
 	public static LoginPage login;
+	public static HomePage home;
 	
 	String configFilePath = "C:\\Users\\simir\\eclipse-workspace\\OrangeApp\\src\\main\\java\\com\\orangeapp\\qa\\configuration\\config.properties";
 	String extentReportPath = "C:\\Users\\simir\\eclipse-workspace\\OrangeApp\\ExtentReports\\OrangeAppReport.html";
@@ -62,6 +64,7 @@ public class Testbase {
 	
 	public void initializePages() {
 		login = new LoginPage(driver);
+		home = new HomePage(driver);
 	}
 	
 	@BeforeSuite

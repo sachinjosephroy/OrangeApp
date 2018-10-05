@@ -17,13 +17,13 @@ public class LoginPage extends Testbase {
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(xpath = "")
+	@FindBy(xpath = "//input[@name='username']")
 	WebElement tbUsername;
 	
-	@FindBy(xpath = "")
+	@FindBy(xpath = "//input[@name='password']")
 	WebElement tbPassword;
 	
-	@FindBy(xpath = "")
+	@FindBy(xpath = "//input[@class='btn btn-small']")
 	WebElement btnLogin;
 	
 	@FindBy(xpath = "//h1[text()='#1 Free CRM software in the cloud for sales and service']")
