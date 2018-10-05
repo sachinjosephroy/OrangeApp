@@ -26,6 +26,9 @@ public class LoginPage extends Testbase {
 	@FindBy(xpath = "")
 	WebElement btnLogin;
 	
+	@FindBy(xpath = "//h1[text()='#1 Free CRM software in the cloud for sales and service']")
+	WebElement txtLoginPageMain;
+	
 	public void logMeIn() {
 		tbUsername.sendKeys(prop.getProperty("username"));
 		tbPassword.sendKeys(prop.getProperty("password"));
@@ -35,6 +38,10 @@ public class LoginPage extends Testbase {
 
 	public String getTitle() {
 		return driver.getTitle();
+	}
+	
+	public String getLoginPageText() {
+		return txtLoginPageMain.getText();
 	}
 
 }
