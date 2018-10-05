@@ -22,7 +22,7 @@ public class LoginPageTests extends Testbase {
 	@Test(priority=2, description="DESCRIPTION: Verify text of the Login page")
 	public void testLoginPageText() {
 		String actual = login.getLoginPageText();
-		String expected = "#1 Free CRM software in the cloud for sales and service";
+		String expected = "#1 Free CRM software in the cloud for sales and servicee";
 		verifyResultString(expected, expected);
 		Assert.assertEquals(actual, expected);
 	}
