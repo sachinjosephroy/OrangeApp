@@ -15,7 +15,7 @@ public class LoginPageTests extends Testbase {
 	public void testTitle() {
 		String actual = login.getTitle();
 		String expected = "#1 Free CRM software in the cloud for sales and service";
-		verifyResultString(expected, expected);
+		verifyResultString(actual, expected);
 		Assert.assertEquals(actual, expected);
 	}
 	
@@ -23,7 +23,7 @@ public class LoginPageTests extends Testbase {
 	public void testLoginPageText() {
 		String actual = login.getLoginPageText();
 		String expected = "#1 Free CRM software in the cloud for sales and servicee";
-		verifyResultString(expected, expected);
+		verifyResultString(actual, expected);
 		Assert.assertEquals(actual, expected);
 	}
 
