@@ -1,17 +1,24 @@
 package com.orangeapp.qa.base;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.lang.reflect.Method;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 
 import com.orangeapp.qa.pages.LoginPage;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 public class Testbase {
 	
@@ -23,6 +30,8 @@ public class Testbase {
 	public static LoginPage login;
 	
 	String configFilePath = "C:\\Users\\simir\\eclipse-workspace\\OrangeApp\\src\\main\\java\\com\\orangeapp\\qa\\configuration\\config.properties";
+	String extentReportPath = "C:\\Users\\simir\\eclipse-workspace\\OrangeApp\\ExtentReports\\OrangeAppReport.html";
+	String extentConfigPath = "C:\\Users\\simir\\eclipse-workspace\\OrangeApp\\ExtentReports\\extent-config.xml";
 	
 	public Testbase() {
 		try {
@@ -55,16 +64,49 @@ public class Testbase {
 		login = new LoginPage(driver);
 	}
 	
+	@BeforeSuite
+	public void setUpSuite() {
+		extent = new ExtentReports(extentReportPath);
+		extent.loadConfig(new File(extentConfigPath));
+	}
+	
 	@BeforeMethod
-	public void setUpMethod() {
+	public void setUpMethod(Method method) {
+		test = extent.startTest(this.getClass().getSimpleName() + " :: " + method.getName(), method.getName());
+		test.assignAuthor("Sachin Roy");
+		test.assignCategory("Functional Tests");
+		
 		initializeBrowser();
 		initializePages();
 	}
 	
-	/*public void verifyResultString(String actual, String expected) {
-		if(!actual.equals(expected)) {
-			
+	@AfterMethod
+	public void tearDownMethod(ITestResult result) {
+		if(result.getStatus() == ITestResult.FAILURE) {
+			test.log(LogStatus.FAIL, "Testing failed");
+			extent.endTest(test);
 		}
-	}*/
+		else if(result.getStatus() == ITestResult.SKIP) {
+			test.log(LogStatus.SKIP, "Testing skipped");
+			extent.endTest(test);
+		}
+		else {
+			test.log(LogStatus.PASS, "Testing passed");
+			extent.endTest(test);
+		}
+		driver.quit();
+	}
+	
+	@AfterSuite
+	public void tearDownSuite() {
+		extent.flush();
+		extent.close();
+	}
+	
+	public void verifyResultString(String actual, String expected) {
+		if(!actual.equals(expected)) {
+			test.log(LogStatus.FAIL, "EXP RESULT: " + expected + "<br/>" + "ACT RESULT: " + actual);
+		}
+	}
 
 }
