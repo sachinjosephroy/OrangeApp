@@ -28,12 +28,18 @@ public class HomePage extends Testbase {
 		driver.switchTo().frame("mainpanel");
 	}
 	
+	public void login() {
+		login.logMeIn();
+	}
+	
 	public String getLogoText() {
+		login();
 		switchFrame();
 		return txtLogo.getText();
 	}
 	
 	public String getSetupLinkText() {
+		login();
 		switchFrame();
 		return lnkSetup.getText();
 	}
