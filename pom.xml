@@ -115,6 +115,7 @@
 			  <configuration>
 			    <includes>
 			      <include>LoginPageTests.java</include>
+			      <include>HomePageTests.java</include>
 			    </includes>
 			  </configuration>
 			</plugin>
