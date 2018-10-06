@@ -14,7 +14,7 @@ public class HomePageTests extends Testbase {
 	@Test(priority=1, description="DESCRIPTION: Verify logo text of the Home page")
 	public void testLogoText() {
 		String actual = home.getLogoText();
-		String expected = "#1 Free CRM software in the cloud for sales and service";
+		String expected = "CRMPRO";
 		verifyResultString(actual, expected);
 		Assert.assertEquals(actual, expected);
 	}
@@ -22,7 +22,7 @@ public class HomePageTests extends Testbase {
 	@Test(priority=2, description="DESCRIPTION: Verify Setup link text of the Home page")
 	public void testSetupLinkText() {
 		String actual = home.getSetupLinkText();
-		String expected = "#1 Free CRM software in the cloud for sales and servicee";
+		String expected = "Setup";
 		verifyResultString(actual, expected);
 		Assert.assertEquals(actual, expected);
 	}
