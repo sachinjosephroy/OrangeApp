@@ -33,7 +33,7 @@ public class LoginPage extends Testbase {
 		tbUsername.sendKeys(prop.getProperty("username"));
 		tbPassword.sendKeys(prop.getProperty("password"));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments(0).click()", btnLogin);
+		js.executeScript("arguments[0].click()", btnLogin);
 	}
 
 	public String getTitle() {
