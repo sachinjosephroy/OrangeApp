@@ -41,7 +41,7 @@ public class HomePage extends Testbase {
 	public String getSetupLinkText() {
 		login();
 		switchFrame();
-		return lnkSetup.getText();
+		return lnkSetup.getText().trim();
 	}
 
 }
