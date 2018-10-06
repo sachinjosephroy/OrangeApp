@@ -20,7 +20,7 @@ public class HomePage extends Testbase {
 	@FindBy(xpath = "//td[@class='logo_text']")
 	WebElement txtLogo;
 	
-	@FindBy(xpath = "//i[@class='fa fa-gears icon-2x']")
+	@FindBy(xpath = "//i[@class='fa fa-gears icon-2x']//parent::a")
 	WebElement lnkSetup;
 	
 	
